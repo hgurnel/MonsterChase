@@ -33,14 +33,37 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerMoveKeyboard();
+        AnimatePlayer();
+    }
+
+    void PlayerMoveKeyboard()
+    {
         // Mapping: left or A --> -1 / no key pressed --> 0 / right or D --> +1
         movementX = Input.GetAxisRaw("Horizontal");
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
     }
 
-    void PlayerMoveKeyboard()
+    void AnimatePlayer()
     {
-
+        // Movement to the right
+        if(movementX > 0)
+        {
+            // Enable "Walk" animation
+            anim.SetBool(WALK_ANIMATION, true);
+            // Player faces to the right
+            sr.flipX = false;
+        }
+        else if(movementX < 0)
+        {
+            anim.SetBool(WALK_ANIMATION, true);            
+            // Player faces to the left
+            sr.flipX = true;
+        }
+        else
+        {
+            anim.SetBool(WALK_ANIMATION, false);
+        }
     }
 
 } // class
