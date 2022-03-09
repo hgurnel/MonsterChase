@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
 
+    private bool isGrounded = true;
+
     private string WALK_ANIMATION = "Walk";
+    private string GROUND_TAG = "Ground";
 
     private void Awake()
     {
@@ -30,10 +33,17 @@ public class Player : MonoBehaviour
         
     }
 
+
+    private void FixedUpdate()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
         PlayerMoveKeyboard();
+        PlayerJump();
         AnimatePlayer();
     }
 
@@ -63,6 +73,24 @@ public class Player : MonoBehaviour
         else
         {
             anim.SetBool(WALK_ANIMATION, false);
+        }
+    }
+
+    void PlayerJump()
+    {
+        // For PC, the button should be the space bar and it should be different for every platform (mobile, console...)
+        if(Input.GetButtonDown("Jump") && isGrounded)
+        {
+            isGrounded = false;
+            myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(GROUND_TAG))
+        {
+            isGrounded = true; 
         }
     }
 
