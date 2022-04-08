@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     private string WALK_ANIMATION = "Walk";
     private string GROUND_TAG = "Ground";
+    private string ENEMY_TAG = "Enemy";
 
     private void Awake()
     {
@@ -71,9 +72,7 @@ public class Player : MonoBehaviour
             sr.flipX = true;
         }
         else
-        {
             anim.SetBool(WALK_ANIMATION, false);
-        }
     }
 
     void PlayerJump()
@@ -90,9 +89,17 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GROUND_TAG))
-        {
-            isGrounded = true;  
-        }
+            isGrounded = true;
+
+        if(collision.gameObject.CompareTag(ENEMY_TAG))
+            Destroy(gameObject);
+    }
+
+    // For triggers, ie objects that do not have a solid collider. Here, the ghost passes through all the object
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(ENEMY_TAG))
+            Destroy(gameObject);
     }
 
 } // class

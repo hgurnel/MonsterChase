@@ -47,7 +47,7 @@ public class MonsterSpawner : MonoBehaviour
                 spawnedMonster.transform.position = rightPos.position;
                 // Invert the movement with a minus sign
                 spawnedMonster.GetComponent<Monster>().speed = -Random.Range(4, 10);
-                spawnedMonster.transform.localScale = new Vector3(-1f, 1f, -1f);
+                spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 1f);
             }
         }
     }

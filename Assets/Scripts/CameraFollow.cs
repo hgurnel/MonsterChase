@@ -20,6 +20,10 @@ public class CameraFollow : MonoBehaviour
     // LateUpdate() is called after all calculations in Update() are finished
     void LateUpdate()
     {
+        // Check if a reference to the player exists
+        if (!player)
+            return;
+
         tempPos = transform.position;
         tempPos.x = player.position.x;
 
