@@ -6,9 +6,9 @@ public class Collector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Player"))
         {
-            // Destroy the game object with which a collision occurred (the Enemy, not the Collector)
+            // Destroy the game object with which a collision occurred (the Enemy or the Player, not the Collector)
             Destroy(collision.gameObject);
         }
     }
