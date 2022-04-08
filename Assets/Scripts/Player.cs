@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         
     }
 
-
+    // FixedUpdate is called at a constant rate (defined in the preferences, in Time)  
     private void FixedUpdate()
     {
         
@@ -86,11 +86,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Built-in fct to detect collisions between two objects
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GROUND_TAG))
         {
-            isGrounded = true; 
+            isGrounded = true;  
         }
     }
 
