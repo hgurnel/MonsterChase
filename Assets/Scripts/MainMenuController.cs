@@ -9,6 +9,10 @@ public class MainMenuController : MonoBehaviour
     {
         // Convert string to int
         int selectedCharacter = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+
+        GameManager.instance.CharIndex = selectedCharacter;
+
+        SceneManager.LoadScene("Gameplay");
     }
 
 } // class
